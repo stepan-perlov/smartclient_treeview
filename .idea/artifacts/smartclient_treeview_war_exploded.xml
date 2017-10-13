@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="smartclient_treeview:war exploded">
+    <output-path>$PROJECT_DIR$/build/artifacts/smartclient_treeview_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="smartclient_treeview" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="java" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="smartclient_treeview/web/Web" />
+    </root>
+  </artifact>
+</component>

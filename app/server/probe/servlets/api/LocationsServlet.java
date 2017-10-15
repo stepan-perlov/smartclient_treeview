@@ -1,4 +1,4 @@
-package probe.servlets;
+package probe.servlets.api;
 
 import org.apache.log4j.Logger;
 import probe.db.api.LocationsApi;
@@ -15,7 +15,7 @@ public class LocationsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String parentIdString = request.getParameter("parent");
+        String parentIdString = request.getParameter("parentId");
         Integer parentId = (parentIdString != null && parentIdString.matches("^-?\\d+"))
             ? Integer.parseInt(parentIdString)
             : null;

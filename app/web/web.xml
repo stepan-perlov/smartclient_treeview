@@ -6,34 +6,26 @@
 
     <servlet>
         <servlet-name>locationsFetch</servlet-name>
-        <servlet-class>probe.servlets.LocationsServlet</servlet-class>
+        <servlet-class>probe.servlets.api.LocationsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>locationsFetch</servlet-name>
         <url-pattern>/api/locations</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>home</servlet-name>
+        <servlet-class>probe.servlets.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>home</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
     <jsp-config>
-        <!-- Isomorphic JSP tags -->
         <taglib>
             <taglib-uri>isomorphic</taglib-uri>
-            <taglib-location>/iscTaglib.xml</taglib-location>
+            <taglib-location>/isomorphic/iscTaglib.xml</taglib-location>
         </taglib>
-        <!-- Serve *.isc files with iscHeader/iscFooter -->
-        <!--
-        <jsp-property-group>
-            <url-pattern>*.isc</url-pattern>
-            <include-prelude>/shared/jsp/iscHeader.jsp</include-prelude>
-            <include-coda>/shared/jsp/iscFooter.jsp</include-coda>
-        </jsp-property-group>
-        -->
-        <!-- Process *.rpc files as RPC requests - puts you in an iterator over current RPC requests -->
-        <!--
-        <jsp-property-group>
-            <url-pattern>*.rpc</url-pattern>
-            <include-prelude>/shared/jsp/rpcHeader.jsp</include-prelude>
-            <include-coda>/shared/jsp/rpcFooter.jsp</include-coda>
-        </jsp-property-group>
-        -->
     </jsp-config>
 </web-app>

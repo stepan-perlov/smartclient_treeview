@@ -41,11 +41,6 @@ public class TestHelpers {
         "]");
     }
 
-    @Test
-    public void testListToXml() {
-        log.debug(item1.toXml());
-    }
-
     static class TestJsonSerializable extends Serializable {
         int num;
         String name;

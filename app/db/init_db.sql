@@ -12,3 +12,4 @@
 \echo '# Create api'
 \i 'api/data_sources_fetch.sql'
 \i 'api/locations_fetch.sql'
+\i 'api/locations_update.sql'

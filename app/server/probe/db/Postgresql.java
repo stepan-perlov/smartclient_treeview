@@ -1,9 +1,13 @@
 package probe.db;
 
+import org.apache.log4j.Logger;
+import org.postgresql.core.Utils;
 import probe.common.Config;
 import java.sql.*;
 
 public class Postgresql {
+    private static Logger log = Logger.getLogger(Postgresql.class);
+
     public static Connection connect() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
@@ -19,5 +23,9 @@ public class Postgresql {
         );
         conn.setAutoCommit(false);
         return conn;
+    }
+
+    public static String quoteLiteral(String iValue) throws SQLException {
+        return "'" + Utils.escapeLiteral( null, iValue, true ).toString() + "'";
     }
 }

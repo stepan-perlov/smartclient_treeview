@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION data_sources_fetch(
   OUT o_id          text,
   OUT o_constructor text,
   OUT o_fields      jsonb
-) RETURNS SETOF RECORD AS $$
+) RETURNS SETOF RECORD AS $function_body$
 BEGIN
   RETURN QUERY
   SELECT
@@ -11,4 +11,4 @@ BEGIN
     fields
   FROM data_sources;
 END;
-$$ LANGUAGE plpgsql STABLE SECURITY DEFINER;
+$function_body$ LANGUAGE plpgsql STABLE SECURITY DEFINER;

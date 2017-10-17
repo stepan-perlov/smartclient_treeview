@@ -42,6 +42,7 @@ var locationsTreeGrid = isc.TreeGrid.create({
     styleName: "listGrid locationsTree",
     dataSource: "locations",
     autoFetchData: true,
+    canEdit: true,
     fields: [
         {name: "name"},
         {name: "type"},

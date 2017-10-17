@@ -5,11 +5,14 @@ INSERT INTO data_sources(
 ) VALUES (
   'locations',
   'probe.servlets.api.LocationsDS',
-  '[
+  format(
+    '[
       {"title": "Id", "name":"id", "primaryKey": true},
-      {"title":"Type", "name":"type"},
+      {"title":"Type", "name":"type", "valueMap": [%s]},
       {"title":"Name", "name":"name"},
       {"title":"Icon", "name":"icon"},
       {"title":"Data", "name":"data"}
-  ]'::jsonb
+    ]',
+    (SELECT string_agg('"'||item||'"', ',') FROM unnest(enum_range(null::location_type)) AS item)
+  )::jsonb
 );

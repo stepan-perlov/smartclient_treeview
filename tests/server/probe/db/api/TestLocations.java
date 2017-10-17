@@ -2,14 +2,16 @@ package probe.db.api;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import probe.common.Helpers;
 
 public class TestLocations {
-    private Logger log = Logger.getLogger(TestLocations.class);
+    private static Logger log = Logger.getLogger(TestLocations.class);
+
     @Test
-    public void testFetch() throws Exception {
-        log.info(LocationsApi.fetch(null).toString());
-        log.info(LocationsApi.fetch(-5).toString());
-        log.info(LocationsApi.fetch(-1).toString());
-        log.info(LocationsApi.fetch(100000).toString());
+    public void viewLocationsFetchInJson() throws Exception {
+        log.info(Helpers.listToJson(LocationsApi.fetch(null)));
+        log.info(Helpers.listToJson(LocationsApi.fetch(-5)));
+        log.info(Helpers.listToJson(LocationsApi.fetch(-1)));
+        log.info(Helpers.listToJson(LocationsApi.fetch(100000)));
     }
 }

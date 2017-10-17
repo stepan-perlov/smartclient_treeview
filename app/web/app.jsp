@@ -7,6 +7,10 @@
 <body>
     <div id="main">
     </div>
+    <script>
+        var dataSourceList = JSON.parse('<%= (String)request.getAttribute("dataSourceList") %>')
+        var locationsList = JSON.parse('<%= (String)request.getAttribute("locationsList") %>');
+    </script>
     <script src="/app.js"></script>
 </body>
 </html>

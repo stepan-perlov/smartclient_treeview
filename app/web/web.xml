@@ -4,23 +4,46 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <listener>
+        <listener-class>com.isomorphic.base.InitListener</listener-class>
+    </listener>
+
     <servlet>
-        <servlet-name>locationsFetch</servlet-name>
-        <servlet-class>probe.servlets.api.LocationsServlet</servlet-class>
+        <servlet-name>apiLocations</servlet-name>
+        <servlet-class>probe.servlets.api.LocationsDS</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>locationsFetch</servlet-name>
+        <servlet-name>apiLocations</servlet-name>
         <url-pattern>/api/locations</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>home</servlet-name>
-        <servlet-class>probe.servlets.HomeServlet</servlet-class>
+        <servlet-name>IDACall</servlet-name>
+        <servlet-class>com.isomorphic.servlet.IDACall</servlet-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>home</servlet-name>
+        <servlet-name>IDACall</servlet-name>
+        <url-pattern>/isomorphic/IDACall</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>app</servlet-name>
+        <servlet-class>probe.servlets.AppServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>app</servlet-name>
         <url-pattern></url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errors/500.html</location>
+    </error-page>
 
     <jsp-config>
         <taglib>

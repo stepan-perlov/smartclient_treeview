@@ -1,14 +1,12 @@
 package probe.db.structs;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jetbrains.annotations.Nullable;
-import probe.common.Helpers;
+import probe.common.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-public class Location {
+public class Location extends Serializable {
     private int id;
     private Type type;
     private String name;
@@ -47,10 +45,6 @@ public class Location {
 
     public @NotNull JsonNode getData() {
         return data;
-    }
-
-    public String toString() {
-        return Helpers.objectToString(this);
     }
 
     public enum Type {

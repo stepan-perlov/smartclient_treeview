@@ -6,6 +6,8 @@ from invoke import task
 from invoke import Collection
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+ENV_DIR = os.path.join(PROJECT_DIR, "env")
+WEB_DIR = os.path.join(PROJECT_DIR, "app/web")
 CONFIG_PATH = os.path.join(PROJECT_DIR, "app/res/probe/common/config.json")
 
 class Config(object):
@@ -40,8 +42,13 @@ class PsqlConnstr(object):
     def query(self, query):
         return "{} -c '{}'".format(self._connstr, query)
 
-@task
-def create(ctx, reset=False):
+@task(name="init")
+def envInit(ctx):
+    ctx.run("tar xf {0}/isomorphic.tar.gz -C {1}".format(ENV_DIR, WEB_DIR))
+    ctx.run("tar xf {0}/tomee.tar.gz -C {0}".format(ENV_DIR))
+
+@task(name="create")
+def dbCreate(ctx, reset=False):
     config = Config.get()
     dbSection = config["db"]
     if reset:
@@ -56,8 +63,8 @@ def create(ctx, reset=False):
 
     ctx.run("""psql -v ON_ERROR_STOP=1 -U postgres -c "create database {}" """.format(dbSection["dbname"]))
 
-@task
-def init(ctx):
+@task(name="init")
+def dbInit(ctx):
     config = Config.get()
     psql = PsqlConnstr(config["db"])
 
@@ -66,5 +73,6 @@ def init(ctx):
     ctx.run(psql.file(schemaPath))
 
 ns = Collection(
-    Collection("db", create, init)
+    Collection("env", envInit),
+    Collection("db", dbCreate, dbInit)
 )

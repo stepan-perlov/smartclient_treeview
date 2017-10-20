@@ -14,7 +14,7 @@ BEGIN
             parent,
             type::text AS type,
             name,
-            icon,
+            icon::text,
             coalesce(data, '{}'::jsonb) AS data
         FROM locations
         WHERE (i_parent IS NULL AND parent IS NULL)

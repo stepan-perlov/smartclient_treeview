@@ -16,18 +16,20 @@ public class LocationsDS extends BasicDataSource {
 
     @Override
     public DSResponse executeFetch(DSRequest request) throws SQLException {
-        Long parentIdLong = (Long) request.getCriteria().get("parentId");
-        Integer parentId = (parentIdLong == null) ? null : parentIdLong.intValue();
-        List<Location> locations = LocationsApi.fetch(parentId);
+        Long parentLong = (Long) request.getCriteria().get("parent");
+        Integer parent = (parentLong == null) ? null : parentLong.intValue();
+        List<Location> locations = LocationsApi.fetch(parent);
         return new DSResponse(locations);
     }
 
     @Override
-    public DSResponse executeUpdate(DSRequest request) throws SQLException {
+    public DSResponse executeUpdate(DSRequest request) throws Exception {
         Long id = (Long) request.getCriteria().get("id");
         Map values = request.getValues();
         values.remove("id");
         Location location = LocationsApi.update(id.intValue(), values);
-        return new DSResponse(location);
+        DSResponse response = new DSResponse(location);
+        response.setAffectedRows(1);
+        return response;
     }
 }

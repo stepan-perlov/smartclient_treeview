@@ -3,6 +3,6 @@ CREATE TABLE locations(
   parent int REFERENCES locations,
   type location_type NOT NULL,
   name text NOT NULL,
-  icon text,
+  icon icon,
   data jsonb
 );

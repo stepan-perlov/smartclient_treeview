@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import probe.common.Helpers;
 import probe.common.Serializable;
 
@@ -15,7 +14,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.util.Iterator;
 
 public class DataSourceStruct extends Serializable {
-    private static String dataFormat = "json";
     private String id;
     private String constructor;
     private JsonNode fields;
@@ -30,8 +28,6 @@ public class DataSourceStruct extends Serializable {
         fields = iFields;
     }
 
-    public static @NotNull String getDataFormat() {return dataFormat;}
-
     @JsonProperty("ID")
     public @NotNull String getId() {
         return id;
@@ -40,6 +36,7 @@ public class DataSourceStruct extends Serializable {
 
     @JsonProperty("serverConstructor")
     public @NotNull String getConstructor() { return constructor; }
+
 
     public @NotNull JsonNode getFields() {
         return fields;
@@ -63,9 +60,13 @@ public class DataSourceStruct extends Serializable {
             fieldItemNode = document.createElement("field");
             fieldItemNode.setAttribute("name", fieldItem.get("name").asText());
             fieldItemNode.setAttribute("title", fieldItem.get("title").asText());
-            if (fieldItem.get("primaryKey") != null) {
-                fieldItemNode.setAttribute("primaryKey", fieldItem.get("primaryKey").asText());
+            if (fieldItem.get("type") != null) {
+                fieldItemNode.setAttribute("type", fieldItem.get("type").asText());
             }
+            if (fieldItem.get("primaryKey") != null)
+                fieldItemNode.setAttribute("primaryKey", fieldItem.get("primaryKey").asText());
+            if (fieldItem.get("foreignKey") != null)
+                fieldItemNode.setAttribute("foreignKey", fieldItem.get("foreignKey").asText());
             fieldsNode.appendChild(fieldItemNode);
         }
         rootNode.appendChild(fieldsNode);

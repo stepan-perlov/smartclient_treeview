@@ -1,5 +1,13 @@
+\echo '# Create extensions'
+CREATE EXTENSION IF NOT EXISTS plpython3u;
+
+\echo '# Create helpers'
+\i 'helpers/json_extend.plpy'
+\i 'helpers/jsonb_extend.plpy'
+
 \echo '# Create enums'
 \i 'enums/location_type.sql'
+\i 'enums/icon.sql'
 
 \echo '# Create tables'
 \i 'tables/data_sources.sql'

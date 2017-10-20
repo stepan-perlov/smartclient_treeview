@@ -1,6 +1,5 @@
 CREATE TYPE location_type AS ENUM(
   'CONTINENT',
   'MACRO_REGION',
-  'COUNTRY',
-  'CITY'
+  'COUNTRY'
 );

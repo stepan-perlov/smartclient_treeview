@@ -10,83 +10,83 @@ INSERT INTO locations(
     null,
     'CONTINENT'::location_type,
     'Евразия',
-    null,
+    '/icons/continents/asia.png'::icon,
     null
 ), (
     -4,
     null,
     'CONTINENT'::location_type,
     'Африка',
-    null,
+    '/icons/continents/africa.png'::icon,
     null
 ), (
     -3,
     -5,
     'MACRO_REGION'::location_type,
     'Европа',
-    null,
+    '/icons/continents/asia.png'::icon,
     null
 ), (
     -2,
     -5,
     'MACRO_REGION'::location_type,
     'Азия',
-    null,
+    '/icons/continents/asia.png'::icon,
     null
 ), (
     -1,
     -4,
     'MACRO_REGION'::location_type,
     'Северная Африка',
-    null,
+    '/icons/continents/africa.png'::icon,
     null
 ), (
     0,
     -4,
     'MACRO_REGION'::location_type,
     'Южная Африка',
-    null,
+    '/icons/continents/africa.png'::icon,
     null
 ), (
     nextval('locations_id_seq'),
     -3,
     'COUNTRY'::location_type,
     'Франция',
-    null,
+    '/icons/flags/FR.png'::icon,
     null
 ), (
     nextval('locations_id_seq'),
     -3,
     'COUNTRY'::location_type,
     'Германия',
-    null,
+    '/icons/flags/GM.png'::icon,
     null
 ), (
     nextval('locations_id_seq'),
     -3,
     'COUNTRY'::location_type,
     'Россия',
-    null,
+    '/icons/flags/RS.png'::icon,
     null
 ), (
     nextval('locations_id_seq'),
     -2,
     'COUNTRY'::location_type,
     'Россия',
-    null,
+    '/icons/flags/RS.png'::icon,
     null
 ), (
     nextval('locations_id_seq'),
     -2,
     'COUNTRY'::location_type,
     'КНР',
-    null,
+    '/icons/flags/CH.png',
     null
 ), (
     nextval('locations_id_seq'),
     -2,
     'COUNTRY'::location_type,
     'Республика Корея',
-    null,
+    '/icons/flags/KR.png',
     null
 );

@@ -1,0 +1,20 @@
+CREATE OR REPLACE FUNCTION public.jsonb_extend(
+    i_target         jsonb,
+    VARIADIC i_items jsonb[]
+) RETURNS json AS $body$
+
+import json
+
+target = json.loads(i_target)
+
+for item in i_items:
+    if item is None:
+        continue
+
+    item = json.loads(item)
+    if isinstance(item, dict):
+        target.update(item)
+
+return json.dumps(target)
+
+$body$ LANGUAGE plpython3u IMMUTABLE SECURITY DEFINER;

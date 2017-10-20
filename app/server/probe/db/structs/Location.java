@@ -1,11 +1,10 @@
 package probe.db.structs;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.jetbrains.annotations.Nullable;
 import probe.common.Serializable;
 
 import javax.validation.constraints.NotNull;
+import java.util.Map;
 
 public class Location extends Serializable {
     private int id;
@@ -13,7 +12,7 @@ public class Location extends Serializable {
     private Type type;
     private String name;
     private String icon;
-    private JsonNode data;
+    private Map<String, Object> data;
 
     public Location(
         int iId,
@@ -21,7 +20,7 @@ public class Location extends Serializable {
         @NotNull Type iType,
         @NotNull String iName,
         @Nullable String iIcon,
-        @NotNull JsonNode iData
+        @NotNull Map<String, Object> iData
     ) {
         id = iId;
         parent = iParent;
@@ -35,7 +34,6 @@ public class Location extends Serializable {
         return id;
     }
 
-    @JsonProperty("parentId")
     public @Nullable Integer getParent() { return parent; }
 
     public @NotNull Type getType() {
@@ -50,14 +48,15 @@ public class Location extends Serializable {
         return icon;
     }
 
-    public @NotNull JsonNode getData() {
+    public @NotNull Map<String, Object> getData() {
         return data;
     }
+
+    public boolean getIsFolder() { return type != Type.COUNTRY; }
 
     public enum Type {
         CONTINENT,
         MACRO_REGION,
-        COUNTRY,
-        CITY
+        COUNTRY
     }
 }

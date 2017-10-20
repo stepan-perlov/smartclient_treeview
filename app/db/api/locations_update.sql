@@ -20,7 +20,7 @@ BEGIN
       parent,
       type::text AS type,
       name,
-      icon,
+      icon::text,
       coalesce(data, '{}'::jsonb) AS data
     FROM view
   $query$, i_patch) USING i_id;

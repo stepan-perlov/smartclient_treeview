@@ -22,6 +22,6 @@ INSERT INTO data_sources(
       {"title":"Data", "name": "data", "type": "locations_data"}
     ]',
     (SELECT string_agg('"'||item||'"', ',') FROM unnest(enum_range(null::location_type)) AS item),
-    (SELECT string_agg('"'||item||'"', ',') FROM unnest(enum_range(null::icon)) AS item)
+    (SELECT string_agg('"'||item||'"', ',') FROM unnest(enum_range(null::location_icon)) AS item)
   )::jsonb
 );

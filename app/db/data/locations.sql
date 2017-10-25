@@ -10,83 +10,83 @@ INSERT INTO locations(
     null,
     'CONTINENT'::location_type,
     'Евразия',
-    '/icons/continents/asia.png'::icon,
+    '/icons/continents/asia.png'::location_icon,
     null
 ), (
     -4,
     null,
     'CONTINENT'::location_type,
     'Африка',
-    '/icons/continents/africa.png'::icon,
+    '/icons/continents/africa.png'::location_icon,
     null
 ), (
     -3,
     -5,
     'MACRO_REGION'::location_type,
     'Европа',
-    '/icons/continents/asia.png'::icon,
+    '/icons/continents/asia.png'::location_icon,
     null
 ), (
     -2,
     -5,
     'MACRO_REGION'::location_type,
     'Азия',
-    '/icons/continents/asia.png'::icon,
+    '/icons/continents/asia.png'::location_icon,
     null
 ), (
     -1,
     -4,
     'MACRO_REGION'::location_type,
     'Северная Африка',
-    '/icons/continents/africa.png'::icon,
+    '/icons/continents/africa.png'::location_icon,
     null
 ), (
     0,
     -4,
     'MACRO_REGION'::location_type,
     'Южная Африка',
-    '/icons/continents/africa.png'::icon,
+    '/icons/continents/africa.png'::location_icon,
     null
 ), (
     nextval('locations_id_seq'),
     -3,
     'COUNTRY'::location_type,
     'Франция',
-    '/icons/flags/FR.png'::icon,
+    '/icons/flags/FR.png'::location_icon,
     null
 ), (
     nextval('locations_id_seq'),
     -3,
     'COUNTRY'::location_type,
     'Германия',
-    '/icons/flags/GM.png'::icon,
+    '/icons/flags/GM.png'::location_icon,
     null
 ), (
     nextval('locations_id_seq'),
     -3,
     'COUNTRY'::location_type,
     'Россия',
-    '/icons/flags/RS.png'::icon,
+    '/icons/flags/RS.png'::location_icon,
     null
 ), (
     nextval('locations_id_seq'),
     -2,
     'COUNTRY'::location_type,
     'Россия',
-    '/icons/flags/RS.png'::icon,
+    '/icons/flags/RS.png'::location_icon,
     null
 ), (
     nextval('locations_id_seq'),
     -2,
     'COUNTRY'::location_type,
     'КНР',
-    '/icons/flags/CH.png',
+    '/icons/flags/CH.png'::location_icon,
     null
 ), (
     nextval('locations_id_seq'),
     -2,
     'COUNTRY'::location_type,
     'Республика Корея',
-    '/icons/flags/KR.png',
+    '/icons/flags/KR.png'::location_icon,
     null
 );

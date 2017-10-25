@@ -6,8 +6,10 @@ import probe.common.Helpers;
 import probe.db.ProbeDSGenerator;
 import probe.db.api.DataSourcesApi;
 import probe.db.api.LocationsApi;
+import probe.db.api.UiSettingsApi;
 import probe.db.structs.DataSourceStruct;
 import probe.db.structs.Location;
+import probe.db.structs.UiSettings;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +42,9 @@ public class AppServlet extends HttpServlet {
 
             List<Location> locationsList = LocationsApi.fetch(null);
             request.setAttribute("locationsList", Helpers.listToJson(locationsList));
+
+            List<UiSettings> uiSettingsList = UiSettingsApi.fetch();
+            request.setAttribute("uiSettingsList", Helpers.listToJson(uiSettingsList));
 
             request.getRequestDispatcher("/app.jsp").forward(request, response);
         } catch (SQLException e) {

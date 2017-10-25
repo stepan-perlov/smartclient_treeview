@@ -10,6 +10,7 @@
     <script>
         var dataSourceList = JSON.parse('<%= (String)request.getAttribute("dataSourceList") %>')
         var locationsList = JSON.parse('<%= (String)request.getAttribute("locationsList") %>');
+        var uiSettingsList = JSON.parse('<%= (String)request.getAttribute("uiSettingsList") %>');
     </script>
     <script src="/app.js"></script>
 </body>

@@ -1,4 +1,4 @@
-CREATE TYPE icon AS ENUM(
+CREATE TYPE location_icon AS ENUM(
     '/icons/continents/africa.png',
     '/icons/continents/asia.png',
     '/icons/flags/AA.png',

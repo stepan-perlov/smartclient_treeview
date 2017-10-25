@@ -23,6 +23,14 @@ public class LocationsDS extends BasicDataSource {
     }
 
     @Override
+    public DSResponse executeAdd(DSRequest request) throws  SQLException {
+        Location location = LocationsApi.add(request.getValues());
+        DSResponse response = new DSResponse(location);
+        response.setAffectedRows(1);
+        return response;
+    }
+
+    @Override
     public DSResponse executeUpdate(DSRequest request) throws Exception {
         Long id = (Long) request.getCriteria().get("id");
         Map values = request.getValues();
@@ -31,5 +39,12 @@ public class LocationsDS extends BasicDataSource {
         DSResponse response = new DSResponse(location);
         response.setAffectedRows(1);
         return response;
+    }
+
+    @Override
+    public DSResponse executeRemove(DSRequest request) throws  SQLException {
+        Long id = (Long) request.getCriteria().get("id");
+        LocationsApi.remove(id.intValue());
+        return new DSResponse();
     }
 }

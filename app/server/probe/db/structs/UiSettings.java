@@ -6,7 +6,7 @@ import probe.common.Serializable;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Map;
 
-public abstract class UiSettings extends Serializable {
+public class UiSettings extends Serializable {
     public static UiSettings create(
         @NotNull String iId,
         @NotNull Type iType,
@@ -16,7 +16,6 @@ public abstract class UiSettings extends Serializable {
             case TREE_GRID:
                 return new TreeGridSettings(
                         iId,
-                        iType,
                         iSettings
                 );
             default:
@@ -26,19 +25,14 @@ public abstract class UiSettings extends Serializable {
 
     private String id;
     private Type type;
-    private Map settings;
 
     protected UiSettings(
         @NotNull String iId,
-        @NotNull Type iType,
-        @NotNull ObjectNode iSettings
+        @NotNull Type iType
     ) {
         id = iId;
         type = iType;
-        settings = settingsObjectToMap(iSettings);
     }
-
-    protected abstract Map<String, Object> settingsObjectToMap(@NotNull ObjectNode iSettings);
 
     public String getId() {
         return id;
@@ -46,10 +40,6 @@ public abstract class UiSettings extends Serializable {
 
     public Type getType() {
         return type;
-    }
-
-    public Map getSettings() {
-        return settings;
     }
 
     public enum Type {

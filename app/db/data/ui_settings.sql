@@ -6,6 +6,7 @@ INSERT INTO ui_settings(
   'locations_tree',
   'TREE_GRID'::ui_settings_type,
   '{
-    "width": "640px"
+    "width": 640,
+    "height": 480
   }'::jsonb
 );

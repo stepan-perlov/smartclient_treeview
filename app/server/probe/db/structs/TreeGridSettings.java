@@ -7,24 +7,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TreeGridSettings extends UiSettings {
+    private final static int DEFAULT_WIDTH = 640;
+    private final static int DEFAULT_HEIGHT = 480;
+    private int width;
+    private int height;
+
     public TreeGridSettings(
         @NotNull String iId,
-        @NotNull Type iType,
         @NotNull ObjectNode iSettings
     ) {
         super(
             iId,
-            iType,
-            iSettings
+            Type.TREE_GRID
         );
+        width = (iSettings.get("width") == null) ? DEFAULT_WIDTH : iSettings.get("width").asInt();
+        height = (iSettings.get("height") == null) ? DEFAULT_HEIGHT : iSettings.get("height").asInt();
     }
 
-    @Override
-    protected Map<String, Object> settingsObjectToMap(@NotNull ObjectNode iSettings) {
-        Map<String, Object> settingsMap = new HashMap<>();
-        if (iSettings.get("width") != null) {
-            settingsMap.put("width", iSettings.get("width").asText());
-        }
-        return settingsMap;
-    }
+    public int getWidth() { return width; }
+    public int getHeight() { return height; }
 }

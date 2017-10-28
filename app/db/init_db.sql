@@ -27,3 +27,4 @@ CREATE EXTENSION IF NOT EXISTS plpython3u;
 \i 'api/locations_update.sql'
 \i 'api/locations_remove.sql'
 \i 'api/ui_settings_fetch.sql'
+\i 'api/ui_settings_update.sql'

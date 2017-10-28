@@ -1,36 +1,3 @@
-/*
-DataSource example
-
-isc.DataSource.create({
-    ID: "locations",
-    dataFormat: "json",
-    dataURL: "/api/locations",
-    fields:[
-        {title:"Id", name:"id", primaryKey: true},
-        {title:"Type", name:"type"},
-        {title:"Name", name:"name"},
-        {title:"Icon", name:"icon"},
-        {title:"Data", name:"data"}
-    ]
-});
-
-isc.DataSource.getDataSource("locations").fetchData({"parent": null}, function(dsResponse, data) {
-    console.log(data);
-});
-isc.DataSource.getDataSource("locations").fetchData({"parent": -5}, function(dsResponse, data) {
-    console.log(data);
-});
-isc.DataSource.getDataSource("locations").fetchData({"parent": -4}, function(dsResponse, data) {
-    console.log(data);
-});
-isc.DataSource.getDataSource("locations").fetchData({"parent": -1}, function(dsResponse, data) {
-    console.log(data);
-});
-isc.DataSource.getDataSource("locations").fetchData({"parent": 10000}, function(dsResponse, data) {
-    console.log(data);
-});
-*/
-
 var dataSourceMap = {};
 dataSourceList.forEach(function(ds) {
     isc.DataSource.create(ds);
@@ -38,12 +5,14 @@ dataSourceList.forEach(function(ds) {
     console.info("Create DataSource `" + ds.ID + "`")
 });
 
+var treeGridSettingsDS = isc.DataSource.getDataSource("tree_grid_settings");
+
 var uiSettingsMap = {};
 uiSettingsList.forEach(function(uiSettings) {
     uiSettingsMap[uiSettings.id] = uiSettings;
 })
 
-var locationsTreeGridSettings = uiSettingsMap.locations_tree.settings;
+var locationsTreeGridSettings = uiSettingsMap.locations_tree;
 
 var locationsDataFields = dataSourceMap.locations_data.fields.map(function(field) {
     var newField = {};
@@ -53,6 +22,26 @@ var locationsDataFields = dataSourceMap.locations_data.fields.map(function(field
     newField.name = "data." + newField.name;
     return newField;
 })
+
+var treeGridSettingsForm = isc.DynamicForm.create({
+    ID: "tree_settings_form",
+    width: 640,
+    titleWidth: 50,
+    dataSource: "tree_grid_settings",
+    isGroup: true,
+    groupTitle: "Settings",
+    fields: [
+        {"name": "width"},
+        {"name": "height"},
+        {"name": "submit", "title": "Submit", "type": "button", "click": function(form) {
+            treeGridSettingsDS.updateData(form.getValues(), function (dsResponse, data, dsRequest) {
+                locationsTreeGrid.setWidth(data.width);
+                locationsTreeGrid.setHeight(data.height);
+            });
+        }}
+    ],
+    values: locationsTreeGridSettings
+});
 
 var locationsTreeGrid = isc.TreeGrid.create({
     ID: "locations_tree",
@@ -76,6 +65,7 @@ var locationsTreeGrid = isc.TreeGrid.create({
         ]
     ),
     width: locationsTreeGridSettings.width,
+    height: locationsTreeGridSettings.height,
     showRecordComponents: true,
     showRecordComponentsByCell: true,
     recordComponentPoolingMode: "viewport",
@@ -114,6 +104,7 @@ main = isc.VLayout.create({
     width: "100%",
     height: "100%",
     members: [
+        treeGridSettingsForm,
         locationsTreeGrid
     ]
 });
